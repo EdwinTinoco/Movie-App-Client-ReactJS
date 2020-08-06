@@ -1,5 +1,13 @@
-# React/Redux/Router Starter Project
+# Movie Web Application
 
-> Provided for the students of the [Bottega Code School](https://bottega.tech/)
+## Techologies used:
+   #### - React JS
+   #### - JavaScript
+   #### - HTML
+   #### - SCSS
+   #### - react-router
+   #### - DOM
+   #### - Axios
+   #### - Fetching REST API developed in Django Rest Framework
 
-*Fork from [es6-webpack2-starter](https://github.com/micooz/es6-webpack2-starter)*
+> Web Developer - Edwin Tinoco

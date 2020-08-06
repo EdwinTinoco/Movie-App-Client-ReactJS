@@ -1,16 +1,32 @@
 import React, { Component } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom';
 
-export default class App extends Component {
-  render() {
-    return (
-      <div className="app">
-        <h1>DevCamp React Starter</h1>
-        <h2>React + Redux</h2>
+import Icons from "../helper/icons";
 
-        <div style={{ color: "red" }}>
-          Warning: this is the experimental template, pardon the bugs
+import NavigationBar from "./navigation-bar/navigation-bar"
+import Home from "./pages/home"
+
+export default function App(props) {
+  Icons();
+
+  return (
+    <div className="container">
+      <Router>
+        <div>
+
+          <NavigationBar />
+
+          <Switch>
+            <Route exact path="/" component={Home} />
+          </Switch>
+
         </div>
-      </div>
-    );
-  }
+      </Router>
+    </div>
+  );
 }

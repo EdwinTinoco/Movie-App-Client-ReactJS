@@ -1,0 +1,118 @@
+.navbar-main-wrapper{  
+   .contact-info{
+      background-color: #272626;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      .phone-icon-wrapper{
+         display: flex;
+         justify-content: center;
+         align-items: center;
+
+         p{
+            color: #fff;
+            font-size: 0.9em;
+            padding-right: 50px;
+         }
+
+         .icon{
+            color: #FFBE0B;
+            font-size: 1.3em;
+            margin-right: 10px;
+         }
+      }
+   }
+
+   .navbar-info{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .left-column{
+         margin-left: 50px;
+
+         img{
+            width: 200px;
+            height: 45px;
+         }
+      }   
+   
+      .right-column{
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+   
+         .links-wrapper{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-right: 70px;
+   
+            .link{
+               margin-right: 20px;
+   
+               a{
+                  text-decoration: none;
+                  color: black;
+                  font-size: 1.2em;
+                  transition: 0.3s ease-in-out;
+   
+                  &:hover{
+                     color: #FFBE0B;
+                  }
+               }
+            }
+         }
+   
+         .login-signup-wrapper{
+            width: 160px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .auth{
+               a{
+                  text-decoration: none;
+                  color: #F48C06;
+                  font-size: 1em;
+                  transition: 0.3s ease-in-out;
+   
+                  &:hover{
+                     color: #FFBE0B;
+                  }
+               }
+            }
+   
+            .or{
+               color: black;
+               font-size: 1em;
+               color: #545454;
+            }
+   
+            a{
+               text-decoration: none; 
+               
+               .sign-up{
+                  margin-right: 10px;
+                  background-color: #FFBE0B;
+                  padding: 1px 10px;
+                  border-radius: 5px;
+                  transition: 0.3s ease-in-out;
+                  
+                  p{
+                     color: black;   
+                     font-family: 'Roboto', sans-serif;        
+                     font-size: 1em;
+                  }
+   
+                  &:hover{
+                     background-color: #F48C06;
+                  }   
+               }
+            }
+         }         
+      }
+   }
+}
