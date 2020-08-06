@@ -2,6 +2,10 @@ import React, { Component, useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import MoviesContainer from "../movies/movies-container"
+
+
+
 export default class Home extends Component {
    constructor(props) {
       super(props);
@@ -31,10 +35,13 @@ export default class Home extends Component {
                </Link>
             </div>
 
-            <div className="movies-main-section">
-               <div className="movies-section">
-
+            <div className="movies-main-container">
+               <div className="search-movie">
+                  <input type="text" placeholder="Search" />
+                  <FontAwesomeIcon icon="plus-circle" />
                </div>
+
+               <MoviesContainer />
             </div>
 
             <div className="services-link">
