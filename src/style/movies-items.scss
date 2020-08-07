@@ -41,22 +41,32 @@
    }
 
    .movies-items{
-      margin-top: 40px;
+      padding: 15px 40px;
+      margin-top: 20px;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       text-align: center;
+      gap: 6px;
 
-      .movies-wrapper{                 
+      .movies-wrapper{ 
+         border: 1px solid #aaa7a7;   
+         border-radius: 5px;
+
+         .title{
+            font-size: 1.3em;
+         }
+
          img{
-            // margin-top: 20px;
             width: 180px;
             height: 200px;
             border-radius: 5px;
          }
 
-         .title{
-            font-size: 1.2em;
+         .year{
+            margin: 5px 0px;
+            color: #ca9a16;
          }
+
 
          .rated{
             display: flex;
@@ -79,8 +89,19 @@
             }
          }
 
-         .movie-detail-link{
+         .movie-detail-link{    
+            margin-top: 15px;        
             margin-bottom: 30px;
+
+            a{
+               color: #282be7;
+               text-decoration: none;
+               transition: 0.3s ease-in-out;
+
+               &:hover{
+                  color: #FFBE0B ;
+               }
+            }
          }
       }
    }

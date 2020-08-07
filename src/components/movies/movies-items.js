@@ -25,7 +25,7 @@ export default class MoviesItems extends Component {
             </div>
 
             <div className="year">
-               <p>Release: {this.props.item.year_release}</p>
+               Release: {this.props.item.year_release}
             </div>
 
             <div className="rated">
@@ -42,7 +42,7 @@ export default class MoviesItems extends Component {
 
             <div className='movie-detail-link'>
                <Link to={`/movie/${this.props.item.id}`}>
-                  <p>Movie details</p>
+                  Movie details
                </Link>
             </div>
          </div>

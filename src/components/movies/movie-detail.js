@@ -15,9 +15,6 @@ export default function MovieDetails(props) {
    const [userRateOption, setUserRateOption] = useState(0)
 
    const handleStars = (val) => {
-      // if (val === -1) {
-      //    setUserRateOption(val)
-      // }
       if (val === 0) {
          console.log('val', val);
 

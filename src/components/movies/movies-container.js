@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import MoviesItems from "./movies-items"
@@ -12,14 +11,18 @@ export default function MoviesContainer(props) {
 
    const clearFilter = () => {
       setMovies(moviesFilter)
+      setSearchInput("")
    }
 
-   const handleFilter = () => {
-      clearFilter()
+   const handleFilter = (e) => {
+      e.preventDefault()
 
-      setMovies(moviesFilter.filter((item) => {
-         return item.title === searchInput
-      }))
+      if (searchInput !== "") {
+
+         setMovies(moviesFilter.filter((item) => {
+            return item.title === searchInput
+         }))
+      }
    }
 
    const getMoviesItems = () => {
@@ -50,13 +53,6 @@ export default function MoviesContainer(props) {
       })
    }
 
-   const handleSubmit = (e) => {
-      e.preventDefault()
-
-      console.log('submit');
-
-   }
-
    useEffect(() => {
       getMoviesItems()
    }, [])
@@ -68,13 +64,15 @@ export default function MoviesContainer(props) {
             <p onClick={clearFilter}>All movies</p>
 
             <div className="input-button">
-               <input type="text"
-                  placeholder="Search movie"
-                  value={searchInput}
-                  onChange={({ target }) => { setSearchInput(target.value) }}
-               />
+               <form onSubmit={handleFilter}>
+                  <input type="text"
+                     placeholder="Search movie"
+                     value={searchInput}
+                     onChange={({ target }) => { setSearchInput(target.value) }}
+                  />
 
-               <button type="button" onClick={handleFilter}><FontAwesomeIcon icon="search" /></button>
+                  <button type="submit"><FontAwesomeIcon icon="search" /></button>
+               </form>
             </div>
 
          </div>
