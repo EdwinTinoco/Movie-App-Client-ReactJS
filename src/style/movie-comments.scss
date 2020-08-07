@@ -1,0 +1,19 @@
+.comments-wrapper{
+   background-color: #f7e8bf;
+   border-radius: 7px;
+   margin-left: 40px;
+   margin-right: 40px;
+
+   .comment-info{
+      p{
+         margin-left: 20px;
+         font-style: italic;
+         font-size: 0.8em;
+      }
+   }
+
+   .comments{
+      margin-left: 20px;
+      font-size: 1em;
+   }
+}

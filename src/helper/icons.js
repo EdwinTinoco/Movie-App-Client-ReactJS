@@ -12,6 +12,9 @@ import {
    faUser,
    faGlobe,
    faSearch,
+   faStar,
+   faAppleAlt,
+   faThumbsDown
 } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
@@ -29,7 +32,10 @@ const Icons = () => {
       faTimes,
       faUser,
       faGlobe,
-      faSearch
+      faSearch,
+      faStar,
+      faAppleAlt,
+      faThumbsDown
    );
 };
 
