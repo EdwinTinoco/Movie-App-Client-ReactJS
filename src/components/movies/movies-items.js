@@ -16,9 +16,17 @@ export default class MoviesItems extends Component {
 
       return (
          <div className="movies-wrapper">
-            <img src={this.props.item.image_url} alt="movie-picture" />
-            <p>{this.props.item.title}</p>
-            <p>{this.state.rated}</p>
+            <div className="img">
+               <img src={this.props.item.image_url} alt="movie-picture" />
+            </div>
+
+            <div className="title">
+               <p>{this.props.item.title}</p>
+            </div>
+
+            <div className="rated">
+               <p>{this.state.rated}</p>
+            </div>
 
             <div className='movie-detail-link'>
                <Link to={`/movie/${this.props.item.id}`}>

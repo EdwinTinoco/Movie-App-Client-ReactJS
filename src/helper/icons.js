@@ -3,20 +3,15 @@ import {
    faSignOutAlt,
    faEdit,
    faSpinner,
-   faPlusCircle,
-   faPhone,
    faEnvelope,
-   faMapMarkedAlt,
    faLock,
    faLink,
-   faMapMarkerAlt,
-   faCalculator,
    faCamera,
    faBars,
    faTimes,
    faUser,
    faGlobe,
-   faGlobeAmericas
+   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
@@ -26,20 +21,15 @@ const Icons = () => {
       faSignOutAlt,
       faEdit,
       faSpinner,
-      faPlusCircle,
-      faPhone,
       faEnvelope,
-      faMapMarkedAlt,
       faLock,
       faLink,
-      faMapMarkerAlt,
-      faCalculator,
       faCamera,
       faBars,
       faTimes,
       faUser,
       faGlobe,
-      faGlobeAmericas
+      faSearch
    );
 };
 

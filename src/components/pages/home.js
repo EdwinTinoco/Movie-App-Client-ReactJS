@@ -30,7 +30,7 @@ export default class Home extends Component {
 
                <Link to="/auth">
                   <div className="button">
-                     <p>Agenda tu cita online</p>
+                     <p>Rate and comment your fav movies</p>
                   </div>
                </Link>
             </div>
@@ -39,16 +39,6 @@ export default class Home extends Component {
                <MoviesContainer />
             </div>
 
-            <div className="services-link">
-               <Link to="/services">
-                  <div className="button">
-                     <div className="icon">
-                        <FontAwesomeIcon icon="calculator" />
-                     </div>
-                  Que tramite o servicio necesitas?
-               </div>
-               </Link>
-            </div>
          </div>
       )
    }

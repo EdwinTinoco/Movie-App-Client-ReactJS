@@ -9,15 +9,6 @@ const NavigationBar = () => {
    return (
       <div className="navbar-main-wrapper">
          <div className="contact-info">
-            <div className="phone-icon-wrapper">
-               <div className="icon">
-                  <FontAwesomeIcon icon="phone" />
-               </div>
-
-               <div className="phone">
-                  <p>Llamanos para agendar tu cita al (801) 374-3045</p>
-               </div>
-            </div>
 
             <div className="phone-icon-wrapper">
                <div className="icon">
@@ -25,7 +16,7 @@ const NavigationBar = () => {
                </div>
 
                <div className="phone">
-                  <p>Tambien puedes agendarla online a traves de nuestro sitio web.</p>
+                  <p>You can find your favorites movies</p>
                </div>
             </div>
          </div>
