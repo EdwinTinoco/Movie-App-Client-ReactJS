@@ -10,6 +10,7 @@ import Icons from "../helper/icons";
 
 import NavigationBar from "./navigation-bar/navigation-bar"
 import Home from "./pages/home"
+import MovieDetails from "./movies/movie-details"
 
 export default function App(props) {
   Icons();
@@ -23,6 +24,7 @@ export default function App(props) {
 
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/movie/:slug" component={MovieDetails} />
           </Switch>
 
         </div>

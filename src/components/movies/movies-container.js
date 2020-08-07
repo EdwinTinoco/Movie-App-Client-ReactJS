@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import MoviesItems from "./movies-items"
 
@@ -37,6 +39,11 @@ export default function MoviesContainer(props) {
 
    return (
       <div className="movies-items-section">
+         <div className="search-movie">
+            <input type="text" placeholder="Search" />
+            <FontAwesomeIcon icon="plus-circle" />
+         </div>
+
          <div className="movies-items">
             {moviesItems()}
          </div>

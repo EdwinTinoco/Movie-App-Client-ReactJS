@@ -36,11 +36,6 @@ export default class Home extends Component {
             </div>
 
             <div className="movies-main-container">
-               <div className="search-movie">
-                  <input type="text" placeholder="Search" />
-                  <FontAwesomeIcon icon="plus-circle" />
-               </div>
-
                <MoviesContainer />
             </div>
 
