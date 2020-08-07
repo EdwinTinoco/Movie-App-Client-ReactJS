@@ -16,16 +16,28 @@ export default class MoviesItems extends Component {
 
       return (
          <div className="movies-wrapper">
-            <div className="img">
-               <img src={this.props.item.image_url} alt="movie-picture" />
-            </div>
-
             <div className="title">
                <p>{this.props.item.title}</p>
             </div>
 
+            <div className="img">
+               <img src={this.props.item.image_url} alt="movie-picture" />
+            </div>
+
+            <div className="year">
+               <p>Release: {this.props.item.year_release}</p>
+            </div>
+
             <div className="rated">
-               <p>{this.state.rated}</p>
+               <div className="star">
+                  <FontAwesomeIcon icon="star" />
+                  {this.state.rated}%
+               </div>
+
+               <div className="tomatoe">
+                  <FontAwesomeIcon icon="apple-alt" />
+                  {(100 - this.state.rated).toFixed(1)}%
+               </div>
             </div>
 
             <div className='movie-detail-link'>

@@ -48,7 +48,7 @@
 
       .movies-wrapper{                 
          img{
-            margin-top: 20px;
+            // margin-top: 20px;
             width: 180px;
             height: 200px;
             border-radius: 5px;
@@ -56,6 +56,27 @@
 
          .title{
             font-size: 1.2em;
+         }
+
+         .rated{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .star{
+               margin-right: 20px;
+               svg{
+                  color: #FFBE0B;
+                  margin-right: 5px;
+               }
+            }
+
+            .tomatoe{
+               svg{
+                  color: #e01c1c;
+                  margin-right: 5px;
+               }
+            }
          }
 
          .movie-detail-link{
