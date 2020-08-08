@@ -11,6 +11,7 @@ export default class Home extends Component {
       super(props);
    }
 
+
    render() {
       return (
          <div className="home-main-wrapper">

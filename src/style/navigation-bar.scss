@@ -67,48 +67,66 @@
          }
    
          .login-signup-wrapper{
-            width: 160px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            .auth{
-               a{
-                  text-decoration: none;
-                  color: #F48C06;
-                  font-size: 1em;
+            .user-info{
+               font-family: 'Open Sans', sans-serif;
+               
+               svg{
+                  margin: 0px 15px 0px 20px;
+                  font-size: 1.3em;
+                  color: #FFBE0B;
                   transition: 0.3s ease-in-out;
-   
+
                   &:hover{
-                     color: #FFBE0B;
+                     cursor: pointer;
+                     color: #545454;
                   }
                }
             }
+
+            .auth-signup{
+               width: 160px;
+               display: flex;
+               justify-content: space-between;
+               align-items: center;
    
-            .or{
-               color: black;
-               font-size: 1em;
-               color: #545454;
-            }
-   
-            a{
-               text-decoration: none; 
-               
-               .sign-up{                  
-                  background-color: #FFBE0B;
-                  padding: 1px 10px;
-                  border-radius: 5px;
-                  transition: 0.3s ease-in-out;
-                  
-                  p{
-                     color: black;   
-                     font-family: 'Roboto', sans-serif;        
+               .auth{
+                  a{
+                     text-decoration: none;
+                     color: #F48C06;
                      font-size: 1em;
+                     transition: 0.3s ease-in-out;
+      
+                     &:hover{
+                        color: #FFBE0B;
+                     }
                   }
-   
-                  &:hover{
-                     background-color: #F48C06;
-                  }   
+               }
+      
+               .or{
+                  color: black;
+                  font-size: 1em;
+                  color: #545454;
+               }
+      
+               a{
+                  text-decoration: none; 
+                  
+                  .sign-up{                  
+                     background-color: #FFBE0B;
+                     padding: 1px 10px;
+                     border-radius: 5px;
+                     transition: 0.3s ease-in-out;
+                     
+                     p{
+                        color: black;   
+                        font-family: 'Roboto', sans-serif;        
+                        font-size: 1em;
+                     }
+      
+                     &:hover{
+                        background-color: #F48C06;
+                     }   
+                  }
                }
             }
          }         
