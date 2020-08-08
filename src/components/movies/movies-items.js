@@ -7,7 +7,7 @@ export default class MoviesItems extends Component {
       super(props);
 
       this.state = {
-         rated: this.props.item.rated
+         ratedPercent: (((this.props.item.sum / this.props.item.count) / 5) * 100).toFixed(1)
       }
 
    }
@@ -31,18 +31,18 @@ export default class MoviesItems extends Component {
             <div className="rated">
                <div className="star">
                   <FontAwesomeIcon icon="star" />
-                  {this.state.rated}%
+                  {this.state.ratedPercent}%
                </div>
 
                <div className="tomatoe">
                   <FontAwesomeIcon icon="apple-alt" />
-                  {(100 - this.state.rated).toFixed(1)}%
+                  {(100 - this.state.ratedPercent).toFixed(1)}%
                </div>
             </div>
 
             <div className='movie-detail-link'>
                <Link to={`/movie/${this.props.item.id}`}>
-                  Movie details
+                  + Movie details
                </Link>
             </div>
          </div>

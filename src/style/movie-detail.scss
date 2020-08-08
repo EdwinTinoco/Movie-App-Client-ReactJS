@@ -69,13 +69,13 @@
 
                .icon{
                   font-size: 1.8em;
-                  color: #545454;
 
                   svg{
+                     color: #545454;
                      transition: 0.3s ease-in-out;
 
                      &:hover{
-                        color: #FFBE0B;
+                        // color: #FFBE0B;
                         cursor: pointer;
                      }
                   }

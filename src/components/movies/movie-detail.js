@@ -15,6 +15,12 @@ export default function MovieDetails(props) {
    const [sumUsersRates, setSumUsersRates] = useState(0)
    const [rating, setRating] = useState(0)
    const [userRateOption, setUserRateOption] = useState(0)
+   const [toggleStar1, setToggleStar1] = useState(false)
+   const [colorStar1, setColorStar1] = useState("#545454")
+   const [colorStar2, setColorStar2] = useState("#545454")
+   const [colorStar3, setColorStar3] = useState("#545454")
+   const [colorStar4, setColorStar4] = useState("#545454")
+   const [colorStar5, setColorStar5] = useState("#545454")
 
    const handleStars = (val) => {
       if (val === 0) {
@@ -24,59 +30,117 @@ export default function MovieDetails(props) {
       }
       if (val === 1) {
          console.log('val', val);
-         setUserRateOption(val)
+         console.log('toggle', toggleStar1);
+
+         if (toggleStar1 === false) {
+            console.log('false');
+
+            setColorStar1("#e01c1c")
+            setUserRateOption(val)
+            setToggleStar1(true)
+
+            setColorStar2('#545454')
+            setColorStar3('#545454')
+            setColorStar4('#545454')
+            setColorStar5('#545454')
+
+         } else {
+            console.log('true');
+
+            setColorStar1("#545454")
+            setUserRateOption(0)
+            setToggleStar1(false)
+         }
       }
       if (val === 2) {
          console.log('val', val);
+
+         setColorStar2("#e75050")
          setUserRateOption(val)
+
+         setColorStar1('#e01c1c')
+         setToggleStar1(false)
+
+         setColorStar3('#545454')
+         setColorStar4('#545454')
+         setColorStar5('#545454')
       }
       if (val === 3) {
          console.log('val', val);
+
+         setColorStar3("#d16f6f")
          setUserRateOption(val)
+
+         setColorStar1('#e01c1c')
+         setToggleStar1(false)
+         setColorStar2('#e75050')
+
+         setColorStar4('#545454')
+         setColorStar5('#545454')
       }
       if (val === 4) {
          console.log('val', val);
+
+         setColorStar4("#e7c872")
          setUserRateOption(val)
+
+         setColorStar1('#e01c1c')
+         setToggleStar1(false)
+         setColorStar2('#e75050')
+         setColorStar3('#d16f6f')
+
+         setColorStar5('#545454')
+         setToggleStar5(false)
       }
       if (val === 5) {
          console.log('val', val);
+
+         setColorStar5("#FFBE0B")
          setUserRateOption(val)
+
+         setColorStar1('#e01c1c')
+         setToggleStar1(false)
+         setColorStar2('#e75050')
+         setColorStar3('#d16f6f')
+         setColorStar4('#e7c872')
       }
    }
 
    const handleSubmitRate = (e) => {
       e.preventDefault();
 
-      if (userRateOption !== 0) {
-         let totalUsers = totalUsersRated + 1
-         let sumRates = sumUsersRates + userRateOption
+      let totalUsers = totalUsersRated + 1
+      let sumRates = sumUsersRates + userRateOption
 
-         setTotalUsersRated(
-            totalUsers
-         )
+      setTotalUsersRated(
+         totalUsers
+      )
 
-         setSumUsersRates(
-            sumRates
-         )
+      setSumUsersRates(
+         sumRates
+      )
 
-         setRating(
-            (((sumRates / totalUsers) / 5) * 100).toFixed(1)
-         )
+      setRating(
+         (((sumRates / totalUsers) / 5) * 100).toFixed(1)
+      )
 
-         if (userRateOption !== 0) {
-            axios.post('http://localhost:8000/api/movies/rates/',
-               {
-                  rated: userRateOption,
-                  movie_id: movieId,
-                  user_id: parseInt(user.id)
-               }
-            )
-               .then(response => {
-                  setUserRateOption(0)
-               })
-               .catch(err => console.log("handleSubmitRate Error: ", err))
+      axios.post('http://localhost:8000/api/movies/rates/',
+         {
+            rated: userRateOption,
+            movie_id: movieId,
+            user_id: parseInt(user.id)
          }
-      }
+      )
+         .then(response => {
+            setColorStar1("#545454")
+            setColorStar2("#545454")
+            setColorStar3("#545454")
+            setColorStar4("#545454")
+            setColorStar5("#545454")
+            setToggleStar1(false)
+            setUserRateOption(0)
+         })
+         .catch(err => console.log("handleSubmitRate Error: ", err))
    }
 
    const handleSubmitComment = (e) => {
@@ -261,7 +325,7 @@ export default function MovieDetails(props) {
                      </div>
 
                      <div className="users-rated">
-                        <p>total users rated: {totalUsersRated}</p>
+                        <p>Total users rated: {totalUsersRated}</p>
                      </div>
                   </div>
 
@@ -294,19 +358,19 @@ export default function MovieDetails(props) {
 
                      <div className="stars">
                         <div className="icon">
-                           <FontAwesomeIcon icon="star" onClick={() => handleStars(1)} />
+                           <FontAwesomeIcon icon="star" style={{ color: `${colorStar1}` }} onClick={() => handleStars(1)} />
                         </div>
                         <div className="icon">
-                           <FontAwesomeIcon icon="star" onClick={() => handleStars(2)} />
+                           <FontAwesomeIcon icon="star" style={{ color: `${colorStar2}` }} onClick={() => handleStars(2)} />
                         </div>
                         <div className="icon">
-                           <FontAwesomeIcon icon="star" onClick={() => handleStars(3)} />
+                           <FontAwesomeIcon icon="star" style={{ color: `${colorStar3}` }} onClick={() => handleStars(3)} />
                         </div>
                         <div className="icon">
-                           <FontAwesomeIcon icon="star" onClick={() => handleStars(4)} />
+                           <FontAwesomeIcon icon="star" style={{ color: `${colorStar4}` }} onClick={() => handleStars(4)} />
                         </div>
                         <div className="icon">
-                           <FontAwesomeIcon icon="star" onClick={() => handleStars(5)} />
+                           <FontAwesomeIcon icon="star" style={{ color: `${colorStar5}` }} onClick={() => handleStars(5)} />
                         </div>
 
                         <div className="button-rate">
