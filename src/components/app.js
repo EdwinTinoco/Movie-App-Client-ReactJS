@@ -34,9 +34,9 @@ export default function App(props) {
     console.log("userCookie", Cookies.get("_sb%_user%_session"))
   }
 
-  // useEffect(() => {
-  //   getUserCookie()
-  // }, [])
+  useEffect(() => {
+    getUserCookie()
+  }, [])
 
   return (
     <div className="container">

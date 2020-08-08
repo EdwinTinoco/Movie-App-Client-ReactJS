@@ -37,21 +37,22 @@ export default class Login extends Component {
          })
       } else {
 
-
-
-         axios.post("https://class-cash-api-ejlt.herokuapp.com/user",
+         axios.post("http://localhost:8000/api/users/login/",
             {
                email: this.state.email,
-               password: this.state.password
+               passw: this.state.password
             }
          ).then(response => {
+
+            console.log('response login', response.data);
+
             if (response.data.length > 0) {
                this.setState({
                   user: response.data[0]
                })
 
                console.log('You can come in', this.state.user);
-               Cookies.set("_sb%_user%_session", `%encript%${this.state.user.users_id}`, { expires: 7 })
+               Cookies.set("_sb%_user%_session", `%encript%${this.state.user.id}`, { expires: 7 })
 
                this.props.handleSuccessfulAuth();
             } else {

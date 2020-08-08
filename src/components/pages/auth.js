@@ -11,7 +11,7 @@ export default class Auth extends Component {
    }
 
    handleSuccessfulAuth() {
-      this.props.history.push("/teachers-home");
+      this.props.history.push("/");
    }
 
 
