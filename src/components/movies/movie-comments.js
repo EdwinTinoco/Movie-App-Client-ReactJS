@@ -4,14 +4,20 @@ export default function MovieComments(props) {
    const {
       id,
       comment,
+      name,
       created
    } = props.item
 
    return (
       <div className="comments-wrapper">
          <div className="comment-info">
-            <p>{created}</p>
-            {/* <p>{`${Username},  ${comments_date}`}</p> */}
+            <div className="info">
+               {name}
+            </div>
+
+            <div className="info">
+               {created}
+            </div>
          </div>
          <div className="comments">
             <p>{comment}</p>

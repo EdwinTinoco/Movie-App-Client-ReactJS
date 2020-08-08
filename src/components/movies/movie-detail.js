@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
-import axios from "axios"
+import axios from "axios";
+import Cookies from 'js-cookie'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import MovieComments from './movie-comments'
 
 export default function MovieDetails(props) {
+   const [user, setUser] = useState({})
    const [movieId, setMovieId] = useState(props.match.params.slug)
    const [movie, setMovie] = useState({})
    const [movieComments, setMovieComments] = useState([])
@@ -66,7 +68,7 @@ export default function MovieDetails(props) {
                {
                   rated: userRateOption,
                   movie_id: movieId,
-                  user_id: 1
+                  user_id: parseInt(user.id)
                }
             )
                .then(response => {
@@ -95,7 +97,7 @@ export default function MovieDetails(props) {
                comment: inputComment,
                created: todayTime,
                movie_id: parseInt(movieId),
-               user_id: 1
+               user_id: parseInt(user.id)
             })
             .then(response => {
 
@@ -105,6 +107,54 @@ export default function MovieDetails(props) {
                getMovieComments()
             })
             .catch(err => console.log("handleSubmitComment Error: ", err))
+      }
+   }
+
+   const handleLogout = () => {
+      console.log('logout');
+
+      setUser({})
+      Cookies.remove("_sb%_user%_session")
+      window.location.reload(false);
+   }
+
+   const getUser = () => {
+      let userCookie = Cookies.get("_sb%_user%_session")
+      let temp = 0
+      let userIdArr = []
+
+      if (userCookie !== undefined) {
+         for (var i = 0; i < userCookie.length; i++) {
+            if (userCookie[i] == "%") {
+               temp += 1
+            }
+
+            if (temp === 2) {
+               if (userCookie[i] !== "%") {
+                  userIdArr.push(userCookie[i])
+               }
+            }
+         }
+
+         let userId = userIdArr.join('')
+
+         axios.get(`http://localhost:8000/api/users/${userId}/`)
+            .then(response => {
+               console.log('response navbar', response.data);
+
+               if (response.data.length > 0) {
+                  setUser(
+                     response.data[0]
+                  )
+               } else {
+                  handleLogout()
+               }
+
+            }).catch(error => {
+               setError(
+                  "An error ocurred"
+               )
+            });
       }
    }
 
@@ -148,7 +198,6 @@ export default function MovieDetails(props) {
    }
 
    const getMovieComments = () => {
-
       axios.get(`http://localhost:8000/api/movies/comments/${movieId}/`)
          .then(response => {
             console.log('movie comments', response.data)
@@ -168,20 +217,11 @@ export default function MovieDetails(props) {
       })
    }
 
-   const setStyle = () => {
-      // if (currentUser.users_role === "admin") {
-      //    return { display: "block" }
-      // } else if (currentUser.users_role === "user") {
-      //    return { display: "block" }
-      // } else {
-      //    return { display: "none" }
-      // }
-   }
-
    useEffect(() => {
       getMovieItem();
       getTotalIUsersRateMovie();
       getMovieComments();
+      getUser()
    }, [])
 
    const {
@@ -248,52 +288,62 @@ export default function MovieDetails(props) {
                   <p>{description}</p>
                </div>
 
-               <div className="rate-movie-wrapper">
-                  <p>Rate the movie</p>
+               {Object.entries(user).length > 0 ? (
+                  <div className="rate-movie-wrapper">
+                     <p>Rate the movie</p>
 
-                  <div className="stars">
-                     <div className="icon">
-                        <FontAwesomeIcon icon="star" onClick={() => handleStars(1)} />
-                     </div>
-                     <div className="icon">
-                        <FontAwesomeIcon icon="star" onClick={() => handleStars(2)} />
-                     </div>
-                     <div className="icon">
-                        <FontAwesomeIcon icon="star" onClick={() => handleStars(3)} />
-                     </div>
-                     <div className="icon">
-                        <FontAwesomeIcon icon="star" onClick={() => handleStars(4)} />
-                     </div>
-                     <div className="icon">
-                        <FontAwesomeIcon icon="star" onClick={() => handleStars(5)} />
-                     </div>
+                     <div className="stars">
+                        <div className="icon">
+                           <FontAwesomeIcon icon="star" onClick={() => handleStars(1)} />
+                        </div>
+                        <div className="icon">
+                           <FontAwesomeIcon icon="star" onClick={() => handleStars(2)} />
+                        </div>
+                        <div className="icon">
+                           <FontAwesomeIcon icon="star" onClick={() => handleStars(3)} />
+                        </div>
+                        <div className="icon">
+                           <FontAwesomeIcon icon="star" onClick={() => handleStars(4)} />
+                        </div>
+                        <div className="icon">
+                           <FontAwesomeIcon icon="star" onClick={() => handleStars(5)} />
+                        </div>
 
-                     <div className="button-rate">
-                        <button type="button" onClick={handleSubmitRate}>Submit rate</button>
+                        <div className="button-rate">
+                           <button type="button" onClick={handleSubmitRate}>Submit rate</button>
+                        </div>
                      </div>
-
                   </div>
-               </div>
+               )
+                  :
+                  null
+               }
             </div>
          </div>
 
          <div className="comments-main-wrapper">
-            <div className="add-comments">
-               <form onSubmit={handleSubmitComment} className="comments-form" style={setStyle()}>
-                  <h3>Add a comment</h3>
-                  <textarea
-                     type="text"
-                     placeholder="Comments"
-                     name="comment"
-                     onChange={({ target }) => { setInputComment(target.value) }}
-                     value={inputComment}
-                  />
 
-                  <div className="btn-comment">
-                     <button type="submit">Add</button>
-                  </div>
-               </form>
-            </div>
+            {Object.entries(user).length > 0 ? (
+               <div className="add-comments">
+                  <form onSubmit={handleSubmitComment} className="comments-form">
+                     <h3>Add a comment</h3>
+                     <textarea
+                        type="text"
+                        placeholder="Comments"
+                        name="comment"
+                        onChange={({ target }) => { setInputComment(target.value) }}
+                        value={inputComment}
+                     />
+
+                     <div className="btn-comment">
+                        <button type="submit">Add</button>
+                     </div>
+                  </form>
+               </div>
+            )
+               :
+               null
+            }
 
             <div className="show-comments">
                <p>Comments</p>

@@ -5,11 +5,16 @@
    margin-right: 40px;
 
    .comment-info{
-      p{
+      display: flex;
+      justify-content: left;
+      align-items: center;
+
+      .info{
          margin-left: 20px;
          font-style: italic;
          font-size: 0.8em;
       }
+      
    }
 
    .comments{

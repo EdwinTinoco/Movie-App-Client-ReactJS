@@ -51,7 +51,7 @@ export default class SignUp extends Component {
                messageUser: "User Added Succesfully!"
             })
 
-            axios.get('http://localhost:8000/api/users/')
+            axios.get('http://localhost:8000/api/users/id/')
                .then(response => {
                   console.log("id last user", response.data[0][0])
 
@@ -66,6 +66,7 @@ export default class SignUp extends Component {
                })
 
             this.props.history.push("/");
+            window.location.reload(false);
          })
          .catch(error => {
             console.log('handleSubmitRegisterNewUser error', error)
