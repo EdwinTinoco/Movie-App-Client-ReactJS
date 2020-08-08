@@ -55,6 +55,7 @@ export default class Login extends Component {
                Cookies.set("_sb%_user%_session", `%encript%${this.state.user.id}`, { expires: 7 })
 
                this.props.handleSuccessfulAuth();
+               window.location.reload(false);
             } else {
                this.setState({
                   errorMessage: "Email or password is wrong"

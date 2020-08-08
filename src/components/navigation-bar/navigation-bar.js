@@ -1,10 +1,67 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import Cookies from 'js-cookie'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Logo from "../../../static/assets/images/logo/logo-1.png"
 
 const NavigationBar = () => {
+   const [user, setUser] = useState({})
+   const [error, setError] = useState("")
+
+   const handleLogout = () => {
+      console.log('logout');
+
+      setUser({})
+      Cookies.remove("_sb%_user%_session")
+      window.location.reload(false);
+   }
+
+   const getUser = () => {
+      let userCookie = Cookies.get("_sb%_user%_session")
+      let temp = 0
+      let userIdArr = []
+
+      if (userCookie !== undefined) {
+         for (var i = 0; i < userCookie.length; i++) {
+            if (userCookie[i] == "%") {
+               temp += 1
+            }
+
+            if (temp === 2) {
+               if (userCookie[i] !== "%") {
+                  userIdArr.push(userCookie[i])
+               }
+            }
+         }
+
+         let userId = userIdArr.join('')
+
+         axios.get(`http://localhost:8000/api/users/${userId}/`)
+            .then(response => {
+               console.log('response navbar', response.data);
+
+               if (response.data.length > 0) {
+                  setUser(
+                     response.data[0]
+                  )
+               } else {
+                  handleLogout()
+               }
+
+            }).catch(error => {
+               setError(
+                  "An error ocurred"
+               )
+            });
+      }
+   }
+
+   useEffect(() => {
+      getUser()
+   }, [])
+
 
    return (
       <div className="navbar-main-wrapper">
@@ -42,17 +99,28 @@ const NavigationBar = () => {
                </div>
 
                <div className="login-signup-wrapper">
-                  <div className="auth">
-                     <Link to="/auth">Log in</Link>
-                  </div>
-
-                  <p className="or">or</p>
-
-                  <Link to="/signup">
-                     <div className="sign-up">
-                        <p>Sign up</p>
+                  {Object.entries(user).length > 0 ? (
+                     <div className="user-info">
+                        {user.name}<FontAwesomeIcon onClick={handleLogout} icon="sign-out-alt" />
                      </div>
-                  </Link>
+                  )
+                     :
+                     (
+                        <div className="auth-signup">
+                           <div className="auth">
+                              <Link to="/auth">Log in</Link>
+                           </div>
+
+                           <p className="or">or</p>
+
+                           <Link to="/signup">
+                              <div className="sign-up">
+                                 <p>Sign up</p>
+                              </div>
+                           </Link>
+                        </div>
+                     )
+                  }
                </div>
             </div>
          </div>
