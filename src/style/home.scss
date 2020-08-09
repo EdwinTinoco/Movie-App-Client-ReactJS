@@ -44,32 +44,16 @@
          }
       }
 
-      a{
-         text-decoration: none;
+      
 
-         .button{   
-            text-align: center;      
-            background-color: #FFBE0B;
-            width: 300px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            border-radius: 3px;
-            transition: 0.3s ease-in-out;
-   
-            p{
-               font-size: 1.1em;
-               font-weight: 500;
-               color: black;
-            }
-   
-            &:hover{
-               cursor: pointer;
-               background-color: #F48C06;           
-            }
+      .review{            
+         p{
+            font-size: 1.1em;
+            font-weight: 500;
+            color: #FFBE0B;
+            position: relative; 
          }
       }
+      
    }
 }

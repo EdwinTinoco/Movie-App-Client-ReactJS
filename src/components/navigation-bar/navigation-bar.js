@@ -90,10 +90,6 @@ const NavigationBar = () => {
                   </div>
 
                   <div className="link">
-                     <Link to="/about">About</Link>
-                  </div>
-
-                  <div className="link">
                      <Link to="/dashboard">Dashboard</Link>
                   </div>
                </div>

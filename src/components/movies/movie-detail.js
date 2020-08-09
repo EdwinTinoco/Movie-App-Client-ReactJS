@@ -35,7 +35,7 @@ export default function MovieDetails(props) {
          if (toggleStar1 === false) {
             console.log('false');
 
-            setColorStar1("#e01c1c")
+            setColorStar1("#FFBE0B")
             setUserRateOption(val)
             setToggleStar1(true)
 
@@ -55,10 +55,10 @@ export default function MovieDetails(props) {
       if (val === 2) {
          console.log('val', val);
 
-         setColorStar2("#e75050")
+         setColorStar2("#FFBE0B")
          setUserRateOption(val)
 
-         setColorStar1('#e01c1c')
+         setColorStar1('#FFBE0B')
          setToggleStar1(false)
 
          setColorStar3('#545454')
@@ -68,12 +68,12 @@ export default function MovieDetails(props) {
       if (val === 3) {
          console.log('val', val);
 
-         setColorStar3("#d16f6f")
+         setColorStar3("#FFBE0B")
          setUserRateOption(val)
 
-         setColorStar1('#e01c1c')
+         setColorStar1('#FFBE0B')
          setToggleStar1(false)
-         setColorStar2('#e75050')
+         setColorStar2('#FFBE0B')
 
          setColorStar4('#545454')
          setColorStar5('#545454')
@@ -81,16 +81,15 @@ export default function MovieDetails(props) {
       if (val === 4) {
          console.log('val', val);
 
-         setColorStar4("#e7c872")
+         setColorStar4("#FFBE0B")
          setUserRateOption(val)
 
-         setColorStar1('#e01c1c')
+         setColorStar1('#FFBE0B')
          setToggleStar1(false)
-         setColorStar2('#e75050')
-         setColorStar3('#d16f6f')
+         setColorStar2('#FFBE0B')
+         setColorStar3('#FFBE0B')
 
          setColorStar5('#545454')
-         setToggleStar5(false)
       }
       if (val === 5) {
          console.log('val', val);
@@ -98,11 +97,11 @@ export default function MovieDetails(props) {
          setColorStar5("#FFBE0B")
          setUserRateOption(val)
 
-         setColorStar1('#e01c1c')
+         setColorStar1('#FFBE0B')
          setToggleStar1(false)
-         setColorStar2('#e75050')
-         setColorStar3('#d16f6f')
-         setColorStar4('#e7c872')
+         setColorStar2('#FFBE0B')
+         setColorStar3('#FFBE0B')
+         setColorStar4('#FFBE0B')
       }
    }
 
@@ -164,8 +163,6 @@ export default function MovieDetails(props) {
                user_id: parseInt(user.id)
             })
             .then(response => {
-
-               console.log('res add comments', response.data);
                setInputComment('')
 
                getMovieComments()
@@ -204,7 +201,6 @@ export default function MovieDetails(props) {
 
          axios.get(`http://localhost:8000/api/users/${userId}/`)
             .then(response => {
-               console.log('response navbar', response.data);
 
                if (response.data.length > 0) {
                   setUser(
@@ -225,7 +221,6 @@ export default function MovieDetails(props) {
    const getMovieItem = () => {
       axios.get(`http://localhost:8000/api/movies/${movieId}/`)
          .then(response => {
-            console.log('movie item', response.data)
 
             setMovie(
                response.data[0]
@@ -239,7 +234,6 @@ export default function MovieDetails(props) {
    const getTotalIUsersRateMovie = () => {
       axios.get(`http://localhost:8000/api/movies/rates/${movieId}`)
          .then(response => {
-            console.log('total users rated', response.data)
 
             if (response.data[0][0] !== 0) {
                setTotalUsersRated(
@@ -264,7 +258,6 @@ export default function MovieDetails(props) {
    const getMovieComments = () => {
       axios.get(`http://localhost:8000/api/movies/comments/${movieId}/`)
          .then(response => {
-            console.log('movie comments', response.data)
 
             setMovieComments(
                response.data
@@ -278,6 +271,21 @@ export default function MovieDetails(props) {
    const commentsByMovie = () => {
       return movieComments.map(item => {
          return <MovieComments key={item.id} item={item} />
+      })
+   }
+
+   const renderStarReviews = () => {
+      let ratedFloor = Math.floor(movie.sum / movie.count).toFixed(1);
+      let arrRatedFloor = []
+
+      for (var i = 1; i < ratedFloor + 1; i++) {
+         arrRatedFloor.push(i)
+      }
+
+      return arrRatedFloor.map(item => {
+         return (
+            <MovieStarReviews key={item} />
+         )
       })
    }
 
@@ -312,22 +320,21 @@ export default function MovieDetails(props) {
                </div>
 
                <div className="rated">
-                  <p>Ratings:</p>
-                  <div className="ratings">
-                     <div className="star">
-                        <FontAwesomeIcon icon="star" />
-                        {rating}%
-                     </div>
+                  <div className="star-wrapper">
+                     {renderStarReviews()}
 
-                     <div className="tomatoe">
-                        <FontAwesomeIcon icon="apple-alt" />
-                        {(100 - rating).toFixed(1)}%
-                     </div>
-
-                     <div className="users-rated">
-                        <p>Total users rated: {totalUsersRated}</p>
-                     </div>
+                     {rating}%
                   </div>
+
+                  <div className="tomatoe">
+                     <FontAwesomeIcon icon="apple-alt" />
+                     {(100 - rating).toFixed(1)}%
+                  </div>
+
+                  <div className="users-rated">
+                     <p>Total users rated: {totalUsersRated}</p>
+                  </div>
+
 
                </div>
 
@@ -353,8 +360,8 @@ export default function MovieDetails(props) {
                </div>
 
                {Object.entries(user).length > 0 ? (
-                  <div className="rate-movie-wrapper">
-                     <p>Rate the movie</p>
+                  <div className="review-movie-wrapper">
+                     <p>Give a review to the movie</p>
 
                      <div className="stars">
                         <div className="icon">
@@ -416,4 +423,13 @@ export default function MovieDetails(props) {
          </div>
       </div>
    )
+}
+
+function MovieStarReviews() {
+   return (
+      <div className="stars">
+         <FontAwesomeIcon icon="star" />
+      </div>
+   )
+
 }

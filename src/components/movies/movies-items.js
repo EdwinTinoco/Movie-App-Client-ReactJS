@@ -7,9 +7,26 @@ export default class MoviesItems extends Component {
       super(props);
 
       this.state = {
-         ratedPercent: (((this.props.item.sum / this.props.item.count) / 5) * 100).toFixed(1)
+         ratedPercent: (((this.props.item.sum / this.props.item.count) / 5) * 100).toFixed(1),
+         ratedRaw: (this.props.item.sum / this.props.item.count)
       }
 
+      this.renderStarReviews = this.renderStarReviews.bind(this)
+   }
+
+   renderStarReviews() {
+      let ratedFloor = Math.floor(this.state.ratedRaw.toFixed(1));
+      let arrRatedFloor = []
+
+      for (var i = 1; i < ratedFloor + 1; i++) {
+         arrRatedFloor.push(i)
+      }
+
+      return arrRatedFloor.map(item => {
+         return (
+            <MovieStarReviews key={item} />
+         )
+      })
    }
 
    render() {
@@ -29,8 +46,9 @@ export default class MoviesItems extends Component {
             </div>
 
             <div className="rated">
-               <div className="star">
-                  <FontAwesomeIcon icon="star" />
+               <div className="star-wrapper">
+                  {this.renderStarReviews()}
+
                   {this.state.ratedPercent}%
                </div>
 
@@ -45,6 +63,16 @@ export default class MoviesItems extends Component {
                   + Movie details
                </Link>
             </div>
+         </div>
+      )
+   }
+}
+
+class MovieStarReviews extends Component {
+   render() {
+      return (
+         <div className="stars">
+            <FontAwesomeIcon icon="star" />
          </div>
       )
    }

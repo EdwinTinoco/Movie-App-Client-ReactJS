@@ -53,7 +53,7 @@
          border-radius: 5px;
 
          .title{
-            font-size: 1.3em;
+            font-size: 1.5em;
          }
 
          img{
@@ -64,7 +64,9 @@
 
          .year{
             margin: 5px 0px;
-            color: #ca9a16;
+            font-size: 1.1em;
+            font-weight: 900;
+            font-family: 'Open Sans', sans-serif;
          }
 
 
@@ -72,12 +74,23 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: 'Open Sans', sans-serif;
 
-            .star{
+            .star-wrapper{
                margin-right: 20px;
-               svg{
-                  color: #FFBE0B;
-                  margin-right: 5px;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+
+               .stars{
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+
+                  svg{
+                     color: #FFBE0B;
+                     margin-right: 5px;
+                  }
                }
             }
 
@@ -95,6 +108,7 @@
 
             a{
                color: #282be7;
+               font-family: 'Open Sans', sans-serif;
                text-decoration: none;
                transition: 0.3s ease-in-out;
 

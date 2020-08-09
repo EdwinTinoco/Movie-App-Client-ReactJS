@@ -29,11 +29,11 @@ export default class Home extends Component {
                   </p>
                </div>
 
-               <Link to="/auth">
-                  <div className="button">
-                     <p>Rate and comment your fav movies</p>
-                  </div>
-               </Link>
+
+               <div className="review">
+                  <p>Review and comment your fav movies</p>
+               </div>
+
             </div>
 
             <div className="movies-main-container">
