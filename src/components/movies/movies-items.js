@@ -38,7 +38,6 @@ export default class MoviesItems extends Component {
    renderStarReviews() {
       if ((this.props.item.count - 1) > 1) {
          let ratedFloor = Math.floor(Math.round(this.state.ratingsRaw));
-         console.log('ratedFloor', ratedFloor);
 
          if (ratedFloor > 0) {
             let arrRatedFloor = []

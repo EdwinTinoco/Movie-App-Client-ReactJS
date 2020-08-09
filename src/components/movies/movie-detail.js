@@ -237,7 +237,6 @@ export default function MovieDetails(props) {
                response.data[0].sum
             )
 
-
             setMovie(
                response.data[0]
             )
@@ -282,13 +281,11 @@ export default function MovieDetails(props) {
    const renderStarReviews = () => {
       console.log('movie count', movie.count);
 
-
       if (totalUsersRated > 1) {
 
          console.log('si es mayor');
 
          let ratedFloor = Math.floor(Math.round((sumUsersRates / totalUsersRated).toFixed(1)));
-         console.log('ratedFloor', ratedFloor);
 
          if (ratedFloor > 0) {
             let arrRatedFloor = []
