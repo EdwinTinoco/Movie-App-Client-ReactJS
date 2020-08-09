@@ -125,7 +125,7 @@ export default function MovieDetails(props) {
       )
 
       setTomatoes(
-         100.0 - (((sumRates / totalUsers) / 5) * 100).toFixed(1)
+         (100.0 - (((sumRates / totalUsers) / 5) * 100)).toFixed(1)
       )
 
       axios.post('http://localhost:8000/api/movies/rates/',
@@ -248,7 +248,7 @@ export default function MovieDetails(props) {
                )
 
                setTomatoes(
-                  100.0 - (((response.data[0].sum / (response.data[0].count - 1)) / 5) * 100).toFixed(1)
+                  (100.0 - (((response.data[0].sum / (response.data[0].count - 1)) / 5) * 100)).toFixed(1)
                )
             } else {
                setRating(0.0)

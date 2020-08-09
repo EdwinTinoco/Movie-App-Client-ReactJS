@@ -32,7 +32,6 @@ export default function Dashboard(props) {
    }
 
    const handleSubmitInsertMovie = (newMovie) => {
-
       axios.post('http://localhost:8000/api/movies/',
          {
             title: newMovie.title,

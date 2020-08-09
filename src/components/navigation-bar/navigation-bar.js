@@ -40,7 +40,7 @@ const NavigationBar = () => {
 
          axios.get(`http://localhost:8000/api/users/${userId}/`)
             .then(response => {
-               console.log('response navbar', response.data);
+               console.log('response navbar user', response.data);
 
                if (response.data.length > 0) {
                   setUser(
@@ -88,10 +88,15 @@ const NavigationBar = () => {
                   <div className="link">
                      <Link to="/">Home</Link>
                   </div>
+                  {Object.entries(user).length > 0 ? user.users_authorization_id === 1 ? (
+                     <div className="link">
+                        <Link to="/admin">Admin</Link>
+                     </div>
 
-                  <div className="link">
-                     <Link to="/admin">Admin</Link>
-                  </div>
+                  ) : null
+                     : null
+                  }
+
                </div>
 
                <div className="login-signup-wrapper">

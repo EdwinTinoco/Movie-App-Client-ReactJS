@@ -22,7 +22,7 @@ export default class MoviesItems extends Component {
       if (this.state.totalUsersRated > 0) {
          this.setState({
             ratings: (((this.state.sumUsersRates / this.state.totalUsersRated) / 5) * 100).toFixed(1),
-            tomatoes: 100.0 - (((this.state.sumUsersRates / this.state.totalUsersRated) / 5) * 100).toFixed(1),
+            tomatoes: (100.0 - (((this.state.sumUsersRates / this.state.totalUsersRated) / 5) * 100)).toFixed(1),
             ratingsRaw: (this.state.sumUsersRates / this.state.totalUsersRated).toFixed(1)
          })
 
