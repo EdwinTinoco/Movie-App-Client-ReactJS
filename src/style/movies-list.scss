@@ -1,0 +1,56 @@
+.dashboard-main-wrapper{
+   .movies-main-wrapper{
+      .main-title{
+         background-color: #646362;
+         padding: 10px 0px;
+         text-align: center;
+
+         p{
+            font-size: 1.5em;
+            color: #FFBE0B;
+         }
+      }
+
+      .movies-list-wrapper{
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 8px 350px;
+         border-bottom: 0.5px solid #c9cace;
+         
+         .movies-info{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            .img{
+               margin-right: 20px;
+
+               img{
+                  width: 60px;
+                  height: 60px;
+                  border-radius: 50px;
+               }
+            }
+
+            p{
+               margin-right: 20px;
+               font-family: 'Open Sans', sans-serif;
+            }
+         }
+
+         .icons-buttons{
+            svg{
+               color: #545454;
+               margin-right: 10px;
+               transition: 0.3s ease-in-out;
+
+               &:hover{
+                  cursor: pointer;
+                  color: #FFBE0B;
+               }
+            }
+         }
+      }
+   }
+}

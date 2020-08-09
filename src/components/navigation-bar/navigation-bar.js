@@ -90,7 +90,7 @@ const NavigationBar = () => {
                   </div>
 
                   <div className="link">
-                     <Link to="/dashboard">Dashboard</Link>
+                     <Link to="/admin">Admin</Link>
                   </div>
                </div>
 
