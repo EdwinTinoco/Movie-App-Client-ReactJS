@@ -13,6 +13,7 @@ import NavigationBar from "./navigation-bar/navigation-bar"
 import Home from "./pages/home"
 import SignUp from "./auth/signup"
 import Auth from "./pages/auth"
+import Admin from "./pages/admin"
 import MovieDetails from "./movies/movie-detail"
 
 export default function App(props) {
@@ -49,6 +50,7 @@ export default function App(props) {
             <Route exact path="/" component={Home} />
             <ProtectedSignUp path="/signup" user={userCookie} component={SignUp} />
             <ProtectedAuth path="/auth" user={userCookie} component={Auth} />
+            <ProtectedAdmin path="/admin" user={userCookie} component={Admin} />
             <Route exact path="/movie/:slug" component={MovieDetails} />
           </Switch>
 
@@ -81,6 +83,23 @@ const ProtectedSignUp = ({ user, component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props => user === "" ?
+        (
+          <Component {...props} />
+        ) :
+        (
+          <Redirect to="/" />
+        )
+      }
+    />
+  )
+}
+
+const ProtectedAdmin = ({ user, component: Component, ...rest }) => {
+  console.log("from protected admin", user)
+  return (
+    <Route
+      {...rest}
+      render={props => user !== "" ?
         (
           <Component {...props} />
         ) :
