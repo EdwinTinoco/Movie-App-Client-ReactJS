@@ -14,7 +14,7 @@ import {
    faSearch,
    faStar,
    faAppleAlt,
-   faThumbsDown
+   faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
@@ -35,7 +35,7 @@ const Icons = () => {
       faSearch,
       faStar,
       faAppleAlt,
-      faThumbsDown
+      faPlusCircle,
    );
 };
 

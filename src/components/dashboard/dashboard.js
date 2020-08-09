@@ -7,8 +7,22 @@ import MoviesList from '../dashboard/movies-list'
 
 export default function Dashboard(props) {
    const [movies, setMovies] = useState([])
+   const [action, setAction] = useState("")
+   const [componentModalIsOpen, setComponentModalIsOpen] = useState(false)
 
-   const deleteMovieItem = id => {
+   const handleModalOpen = (option) => {
+
+      console.log('holaaa');
+
+      setComponentModalIsOpen(
+         true
+      )
+      setAction(
+         option
+      )
+   }
+
+   const handleDeleteMovie = id => {
       fetch(`http://localhost:8000/api/movies/${id}/`, {
          method: "DELETE"
       })
@@ -21,11 +35,6 @@ export default function Dashboard(props) {
          )
    }
 
-   const editMovieItem = id => {
-      console.log('edit movie');
-
-   }
-
    const getMoviesItems = () => {
       axios.get('http://localhost:8000/api/movies/')
          .then(response => {
@@ -33,10 +42,6 @@ export default function Dashboard(props) {
 
             if (response.data.length > 0) {
                setMovies(
-                  response.data
-               )
-
-               setMoviesFilter(
                   response.data
                )
             }
@@ -52,8 +57,9 @@ export default function Dashboard(props) {
             <MoviesList
                key={item.id}
                item={item}
-               deleteMovieItem={deleteMovieItem}
-               editMovieItem={editMovieItem}
+               handleDeleteMovie={handleDeleteMovie}
+               action={action}
+               componentModalIsOpen={componentModalIsOpen}
             />
          )
       })
@@ -68,6 +74,10 @@ export default function Dashboard(props) {
          <div className="movies-main-wrapper">
             <div className="main-title">
                <p>Movies List</p>
+            </div>
+
+            <div className="add-movie">
+               <p>Add Movie <FontAwesomeIcon icon="plus-circle" onClick={() => handleModalOpen("Insert")} /></p>
             </div>
 
             {moviesItems()}
