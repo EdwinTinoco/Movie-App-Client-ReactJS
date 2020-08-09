@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import Modal from "../modals/modal"
+import ModalEdit from "../modals/modal-edit"
 
 export default class MoviesList extends Component {
    constructor(props) {
       super(props);
 
       this.state = {
-         componentModalIsOpen: this.props.componentModalIsOpen,
-         action: this.props.action
+         componentModalIsOpen: false,
+         action: ""
       }
 
       this.handleModalClose = this.handleModalClose.bind(this)
@@ -38,10 +38,11 @@ export default class MoviesList extends Component {
          year_release
       } = this.props.item
 
+
       return (
          <div className="movies-list-wrapper">
             <div className="modal">
-               <Modal
+               <ModalEdit
                   handleModalClose={this.handleModalClose}
                   modalIsOpen={this.state.componentModalIsOpen}
                   item={this.props.item}

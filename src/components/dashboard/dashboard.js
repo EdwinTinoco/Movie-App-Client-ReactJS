@@ -3,6 +3,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import MoviesList from '../dashboard/movies-list'
+import ModalInsert from "../modals/modal-insert"
 
 
 export default function Dashboard(props) {
@@ -10,16 +11,48 @@ export default function Dashboard(props) {
    const [action, setAction] = useState("")
    const [componentModalIsOpen, setComponentModalIsOpen] = useState(false)
 
-   const handleModalOpen = (option) => {
+   const handleModalClose = () => {
+      setComponentModalIsOpen(
+         false
+      )
 
-      console.log('holaaa');
+      setAction(
+         ""
+      )
+   }
 
+   const handleModalOpen = option => {
       setComponentModalIsOpen(
          true
       )
+
       setAction(
          option
       )
+   }
+
+   const handleSubmitInsertMovie = (newMovie) => {
+
+      axios.post('http://localhost:8000/api/movies/',
+         {
+            title: newMovie.title,
+            description: newMovie.description,
+            genre: newMovie.genre,
+            image_url: newMovie.image_url,
+            year_release: newMovie.year_release,
+            classification: newMovie.classification,
+            duration: newMovie.duration
+         })
+         .then(response => {
+            console.log('response insert movie', response.data);
+
+            setMovies(
+               [response.data, ...movies]
+            )
+         })
+         .catch(error => {
+            console.log("handleSubmitInsertMovie error: ", error);
+         })
    }
 
    const handleDeleteMovie = id => {
@@ -58,8 +91,6 @@ export default function Dashboard(props) {
                key={item.id}
                item={item}
                handleDeleteMovie={handleDeleteMovie}
-               action={action}
-               componentModalIsOpen={componentModalIsOpen}
             />
          )
       })
@@ -72,6 +103,13 @@ export default function Dashboard(props) {
    return (
       <div className="dashboard-main-wrapper">
          <div className="movies-main-wrapper">
+            <ModalInsert
+               handleModalClose={handleModalClose}
+               modalIsOpen={componentModalIsOpen}
+               action={action}
+               handleSubmitInsertMovie={handleSubmitInsertMovie}
+            />
+
             <div className="main-title">
                <p>Movies List</p>
             </div>

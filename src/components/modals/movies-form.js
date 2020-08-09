@@ -51,7 +51,7 @@ export default class MoviesForm extends Component {
                   title: this.state.title,
                   description: this.state.description,
                   genre: this.state.genre,
-                  image_url: this.state.image_url,
+                  image_url: this.state.image_url || "https://source.unsplash.com/random",
                   year_release: this.state.year_release,
                   classification: this.state.classification,
                   duration: this.state.duration
@@ -69,32 +69,30 @@ export default class MoviesForm extends Component {
          } else if (this.props.action === "Insert") {
             console.log('handle submit insert movie');
 
-            axios.post('http://localhost:8000/api/movies/',
-               {
-                  title: this.state.title,
-                  description: this.state.description,
-                  genre: this.state.genre,
-                  image_url: this.state.image_url,
-                  year_release: this.state.year_release,
-                  classification: this.state.classification,
-                  duration: this.state.duration
-               })
-               .then(response => {
-                  this.setState({
-                     title: "",
-                     description: "",
-                     genre: "",
-                     image_url: "",
-                     year_release: "",
-                     classification: "",
-                     duration: "",
-                     errorsMessage: {},
-                     message: response.data
-                  })
-               })
-               .catch(error => {
-                  console.log("handleSubmit insert movie error: ", error);
-               })
+            const newMovie = {
+               title: this.state.title,
+               description: this.state.description,
+               genre: this.state.genre,
+               image_url: this.state.image_url || "https://source.unsplash.com/random",
+               year_release: this.state.year_release,
+               classification: this.state.classification,
+               duration: this.state.duration
+            }
+
+            this.props.handleSubmitInsertMovie(newMovie)
+
+            this.setState({
+               title: "",
+               description: "",
+               genre: "",
+               image_url: "",
+               year_release: "",
+               classification: "",
+               duration: "",
+               errorsMessage: {},
+               message: "Movie added successfully!"
+            })
+
          }
       }
 
@@ -118,10 +116,10 @@ export default class MoviesForm extends Component {
          isValid = false;
          errors["genre"] = "Please enter genre";
       }
-      if (!this.state.image_url) {
-         isValid = false;
-         errors["image_url"] = "Please enter movie image";
-      }
+      // if (!this.state.image_url) {
+      //    isValid = false;
+      //    errors["image_url"] = "Please enter movie image";
+      // }
       if (!this.state.year_release) {
          isValid = false;
          errors["year_release"] = "Please enter year release";

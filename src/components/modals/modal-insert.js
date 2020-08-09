@@ -1,17 +1,13 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
 
-import MoviesForm from "../modals/movies-form"
+import MoviesForm from "./movies-form"
 
 ReactModal.setAppElement(".app-wrapper");
 
-export default class Modal extends Component {
+export default class ModalInsert extends Component {
    constructor(props) {
       super(props);
-
-      this.state = {
-         movie: this.props.item
-      }
 
       this.customStyles = {
          content: {
@@ -28,7 +24,23 @@ export default class Modal extends Component {
          }
       }
 
+      this.item = {
+         id: 0,
+         title: "",
+         description: "",
+         genre: "",
+         image_url: "",
+         year_release: "",
+         classification: "",
+         duration: ""
+      }
+
       this.handleModalClose = this.handleModalClose.bind(this)
+      this.handleSubmitInsertMovie = this.handleSubmitInsertMovie.bind(this)
+   }
+
+   handleSubmitInsertMovie(newMovie) {
+      this.props.handleSubmitInsertMovie(newMovie)
    }
 
    handleModalClose() {
@@ -47,8 +59,9 @@ export default class Modal extends Component {
 
             <MoviesForm
                handleModalClose={this.handleModalClose}
+               handleSubmitInsertMovie={this.handleSubmitInsertMovie}
                action={this.props.action}
-               item={this.props.item}
+               item={this.item}
             />
 
          </ReactModal>

@@ -23,16 +23,14 @@ export default function App(props) {
 
   const getUserCookie = () => {
     if (Cookies.get("_sb%_user%_session") !== undefined) {
-      console.log('usuario logeado');
+      console.log('user logged in');
 
       setUserCookie(
         Cookies.get("_sb%_user%_session")
       )
     } else {
-      console.log('usuario no logeado');
+      console.log('user not logged');
     }
-
-    console.log("userCookie", Cookies.get("_sb%_user%_session"))
   }
 
   useEffect(() => {
@@ -61,7 +59,6 @@ export default function App(props) {
 }
 
 const ProtectedAuth = ({ user, component: Component, ...rest }) => {
-  console.log("from protected auth", user)
   return (
     <Route
       {...rest}
@@ -78,7 +75,6 @@ const ProtectedAuth = ({ user, component: Component, ...rest }) => {
 }
 
 const ProtectedSignUp = ({ user, component: Component, ...rest }) => {
-  console.log("from protected signup", user)
   return (
     <Route
       {...rest}
@@ -95,11 +91,12 @@ const ProtectedSignUp = ({ user, component: Component, ...rest }) => {
 }
 
 const ProtectedAdmin = ({ user, component: Component, ...rest }) => {
-  console.log("from protected admin", user)
+  let currentUser = Cookies.get("_sb%_user%_session")
+
   return (
     <Route
       {...rest}
-      render={props => user !== "" ?
+      render={props => currentUser !== "" && currentUser !== undefined ?
         (
           <Component {...props} />
         ) :
