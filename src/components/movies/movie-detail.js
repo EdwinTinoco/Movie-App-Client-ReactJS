@@ -13,7 +13,8 @@ export default function MovieDetails(props) {
    const [inputComment, setInputComment] = useState("")
    const [totalUsersRated, setTotalUsersRated] = useState(0)
    const [sumUsersRates, setSumUsersRates] = useState(0)
-   const [rating, setRating] = useState(0)
+   const [rating, setRating] = useState(0.0)
+   const [tomatoes, setTomatoes] = useState(0.0)
    const [userRateOption, setUserRateOption] = useState(0)
    const [toggleStar1, setToggleStar1] = useState(false)
    const [colorStar1, setColorStar1] = useState("#545454")
@@ -123,6 +124,10 @@ export default function MovieDetails(props) {
          (((sumRates / totalUsers) / 5) * 100).toFixed(1)
       )
 
+      setTomatoes(
+         100.0 - (((sumRates / totalUsers) / 5) * 100).toFixed(1)
+      )
+
       axios.post('http://localhost:8000/api/movies/rates/',
          {
             rated: userRateOption,
@@ -222,33 +227,33 @@ export default function MovieDetails(props) {
       axios.get(`http://localhost:8000/api/movies/${movieId}/`)
          .then(response => {
 
+            console.log('movie detail', response.data[0].count);
+
+            setTotalUsersRated(
+               response.data[0].count - 1
+            )
+
+            setSumUsersRates(
+               response.data[0].sum
+            )
+
+
             setMovie(
                response.data[0]
             )
 
-         }).catch(error => {
-            console.log('getMovieItem error', error);
-         })
-   }
-
-   const getTotalIUsersRateMovie = () => {
-      axios.get(`http://localhost:8000/api/movies/rates/${movieId}`)
-         .then(response => {
-
-            if (response.data[0][0] !== 0) {
-               setTotalUsersRated(
-                  response.data[0][0]
-               )
-
-               setSumUsersRates(
-                  response.data[0][1]
-               )
-
+            if ((response.data[0].count - 1) > 0) {
                setRating(
-                  (((response.data[0][1] / response.data[0][0]) / 5) * 100).toFixed(1)
+                  (((response.data[0].sum / (response.data[0].count - 1)) / 5) * 100).toFixed(1)
                )
-            }
 
+               setTomatoes(
+                  100.0 - (((response.data[0].sum / (response.data[0].count - 1)) / 5) * 100).toFixed(1)
+               )
+            } else {
+               setRating(0.0)
+               setTomatoes(0.0)
+            }
 
          }).catch(error => {
             console.log('getMovieItem error', error);
@@ -275,23 +280,44 @@ export default function MovieDetails(props) {
    }
 
    const renderStarReviews = () => {
-      let ratedFloor = Math.floor(movie.sum / movie.count).toFixed(1);
-      let arrRatedFloor = []
+      console.log('movie count', movie.count);
 
-      for (var i = 1; i < ratedFloor + 1; i++) {
-         arrRatedFloor.push(i)
-      }
 
-      return arrRatedFloor.map(item => {
+      if (totalUsersRated > 1) {
+
+         console.log('si es mayor');
+
+         let ratedFloor = Math.floor(Math.round((sumUsersRates / totalUsersRated).toFixed(1)));
+         console.log('ratedFloor', ratedFloor);
+
+         if (ratedFloor > 0) {
+            let arrRatedFloor = []
+            for (var i = 1; i < ratedFloor + 1; i++) {
+               arrRatedFloor.push(i)
+            }
+
+            return arrRatedFloor.map(item => {
+               return (
+                  <MovieStarReviews key={item} />
+               )
+            })
+         } else {
+            return (
+               <FontAwesomeIcon icon="star" style={{ color: '#545454' }} />
+            )
+         }
+
+      } else {
          return (
-            <MovieStarReviews key={item} />
+            <FontAwesomeIcon icon="star" style={{ color: '#545454' }} />
          )
-      })
+      }
    }
+
+
 
    useEffect(() => {
       getMovieItem();
-      getTotalIUsersRateMovie();
       getMovieComments();
       getUser()
    }, [])
@@ -328,11 +354,11 @@ export default function MovieDetails(props) {
 
                   <div className="tomatoe">
                      <FontAwesomeIcon icon="apple-alt" />
-                     {(100 - rating).toFixed(1)}%
+                     {tomatoes}%
                   </div>
 
                   <div className="users-rated">
-                     <p>Total users rated: {totalUsersRated}</p>
+                     <p>Rates: {totalUsersRated}</p>
                   </div>
 
 
