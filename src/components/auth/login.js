@@ -37,7 +37,7 @@ export default class Login extends Component {
          })
       } else {
 
-         axios.post("http://localhost:8000/api/users/login/",
+         axios.post("https://ejlt-djangorf-movie-api.herokuapp.com/api/users/login/",
             {
                email: this.state.email,
                passw: this.state.password

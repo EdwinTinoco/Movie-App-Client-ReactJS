@@ -32,7 +32,7 @@ export default function Dashboard(props) {
    }
 
    const handleSubmitInsertMovie = (newMovie) => {
-      axios.post('http://localhost:8000/api/movies/',
+      axios.post('https://ejlt-djangorf-movie-api.herokuapp.com/api/movies/',
          {
             title: newMovie.title,
             description: newMovie.description,
@@ -55,7 +55,7 @@ export default function Dashboard(props) {
    }
 
    const handleDeleteMovie = id => {
-      fetch(`http://localhost:8000/api/movies/${id}/`, {
+      fetch(`https://ejlt-djangorf-movie-api.herokuapp.com/api/movies/${id}/`, {
          method: "DELETE"
       })
          .then(
@@ -68,7 +68,7 @@ export default function Dashboard(props) {
    }
 
    const getMoviesItems = () => {
-      axios.get('http://localhost:8000/api/movies/')
+      axios.get('https://ejlt-djangorf-movie-api.herokuapp.com/api/movies/')
          .then(response => {
             console.log('response', response.data)
 

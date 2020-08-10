@@ -46,7 +46,7 @@ export default class MoviesForm extends Component {
          if (this.props.action === "Edit") {
             console.log('handle submit edit movie');
 
-            axios.put(`http://localhost:8000/api/movies/${this.state.id}/`,
+            axios.put(`https://ejlt-djangorf-movie-api.herokuapp.com/api/movies/${this.state.id}/`,
                {
                   title: this.state.title,
                   description: this.state.description,
@@ -116,10 +116,6 @@ export default class MoviesForm extends Component {
          isValid = false;
          errors["genre"] = "Please enter genre";
       }
-      // if (!this.state.image_url) {
-      //    isValid = false;
-      //    errors["image_url"] = "Please enter movie image";
-      // }
       if (!this.state.year_release) {
          isValid = false;
          errors["year_release"] = "Please enter year release";

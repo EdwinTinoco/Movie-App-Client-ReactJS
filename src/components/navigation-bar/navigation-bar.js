@@ -38,7 +38,7 @@ const NavigationBar = () => {
 
          let userId = userIdArr.join('')
 
-         axios.get(`http://localhost:8000/api/users/${userId}/`)
+         axios.get(`https://ejlt-djangorf-movie-api.herokuapp.com/api/users/${userId}/`)
             .then(response => {
                console.log('response navbar user', response.data);
 

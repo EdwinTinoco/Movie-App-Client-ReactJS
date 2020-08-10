@@ -128,7 +128,7 @@ export default function MovieDetails(props) {
          (100.0 - (((sumRates / totalUsers) / 5) * 100)).toFixed(1)
       )
 
-      axios.post('http://localhost:8000/api/movies/rates/',
+      axios.post('https://ejlt-djangorf-movie-api.herokuapp.com/api/movies/rates/',
          {
             rated: userRateOption,
             movie_id: movieId,
@@ -161,7 +161,7 @@ export default function MovieDetails(props) {
 
       if (inputComment !== "") {
          axios
-            .post("http://localhost:8000/api/movies/comments/", {
+            .post("https://ejlt-djangorf-movie-api.herokuapp.com/api/movies/comments/", {
                comment: inputComment,
                created: todayTime,
                movie_id: parseInt(movieId),
@@ -204,7 +204,7 @@ export default function MovieDetails(props) {
 
          let userId = userIdArr.join('')
 
-         axios.get(`http://localhost:8000/api/users/${userId}/`)
+         axios.get(`https://ejlt-djangorf-movie-api.herokuapp.com/api/users/${userId}/`)
             .then(response => {
 
                if (response.data.length > 0) {
@@ -224,7 +224,7 @@ export default function MovieDetails(props) {
    }
 
    const getMovieItem = () => {
-      axios.get(`http://localhost:8000/api/movies/${movieId}/`)
+      axios.get(`https://ejlt-djangorf-movie-api.herokuapp.com/api/movies/${movieId}/`)
          .then(response => {
 
             console.log('movie detail', response.data[0].count);
@@ -260,7 +260,7 @@ export default function MovieDetails(props) {
    }
 
    const getMovieComments = () => {
-      axios.get(`http://localhost:8000/api/movies/comments/${movieId}/`)
+      axios.get(`https://ejlt-djangorf-movie-api.herokuapp.com/api/movies/comments/${movieId}/`)
          .then(response => {
 
             setMovieComments(
