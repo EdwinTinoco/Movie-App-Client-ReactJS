@@ -34,7 +34,7 @@ export default class SignUp extends Component {
 
       axios
          .post(
-            'https://ejlt-djangorf-movie-api.herokuapp.com/api/users/signup/',
+            'http://localhost:8000/api/users/signup/',
             {
                name: this.state.name,
                email: this.state.email,
@@ -51,7 +51,7 @@ export default class SignUp extends Component {
                messageUser: "User Added Succesfully!"
             })
 
-            axios.get('https://ejlt-djangorf-movie-api.herokuapp.com/api/users/id/')
+            axios.get('http://localhost:8000/api/users/id/')
                .then(response => {
                   console.log("id last user", response.data[0][0])
 

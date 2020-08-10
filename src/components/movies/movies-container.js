@@ -26,7 +26,7 @@ export default function MoviesContainer(props) {
    }
 
    const getMoviesItems = () => {
-      axios.get('https://ejlt-djangorf-movie-api.herokuapp.com/api/movies/')
+      axios.get('http://localhost:8000/api/movies/')
          .then(response => {
             console.log('response', response.data)
 

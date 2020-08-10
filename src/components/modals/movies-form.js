@@ -46,7 +46,7 @@ export default class MoviesForm extends Component {
          if (this.props.action === "Edit") {
             console.log('handle submit edit movie');
 
-            axios.put(`https://ejlt-djangorf-movie-api.herokuapp.com/api/movies/${this.state.id}/`,
+            axios.put(`http://localhost:8000/api/movies/${this.state.id}/`,
                {
                   title: this.state.title,
                   description: this.state.description,
