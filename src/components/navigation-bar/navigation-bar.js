@@ -41,6 +41,8 @@ const NavigationBar = () => {
          axios.get(`http://localhost:8000/api/users/${userId}/`)
             .then(response => {
                console.log('response navbar user', response.data);
+               console.log('testing heroku collaborator');
+
 
                if (response.data.length > 0) {
                   setUser(
